@@ -1,0 +1,19 @@
+version: "3"
+services:
+  vendor-service:
+    build: ./vendor-service
+    ports: 
+      - '3001:3001'
+
+  shopper-service:
+    build: ./shopper-service
+    ports: 
+      - '3002:3002'
+
+  proxy-service:
+    build: ./proxy-service
+    ports:
+      - '3000:3000'
+    depends_on:
+      - vendor-service
+      - shopper-service
